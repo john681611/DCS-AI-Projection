@@ -10,10 +10,13 @@ for key in contents:
     key_parts = key.split(",")
     lst.append({
         "test": {
-            "x": key_parts[0].replace("x:", ""),
-            "y": key_parts[1].replace("z:", ""),
+            "x": float(key_parts[0].replace("x:", "")),
+            "y": float(key_parts[1].replace("z:", "")),
         },
-        "input": contents[key],
+        "input": {
+            "x": float(contents[key]['x']),
+            "y": float(contents[key]['y'])
+        },
     })
 with gzip.open(f"Transformed_data/{file}.json.gz", 'wt') as f:
     f.write(json.dumps(lst))
